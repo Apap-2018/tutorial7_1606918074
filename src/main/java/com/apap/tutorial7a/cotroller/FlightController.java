@@ -35,36 +35,6 @@ public class FlightController {
     @Autowired
     private PilotService pilotService;
 
-//    @RequestMapping(value = "/flight/add/{licenseNumber}", method = RequestMethod.GET)
-//    private String add(@PathVariable(value = "licenseNumber") String licenseNumber, Model model) {
-//        PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
-//        pilot.setListFlight(new ArrayList<FlightModel>(){
-//            private ArrayList<FlightModel> init(){
-//                this.add(new FlightModel());
-//                return this;
-//            }
-//        }.init());
-//
-//        model.addAttribute("pilot", pilot);
-//        return "add-flight";
-//    }
-//
-//    @RequestMapping(value = "/flight/add/{licenseNumber}", method = RequestMethod.POST, params={"addRow"})
-//    private String addRow(@ModelAttribute PilotModel pilot, Model model) {
-//        pilot.getListFlight().add(new FlightModel());
-//        model.addAttribute("pilot", pilot);
-//        return "add-flight";
-//    }
-//
-//    @RequestMapping(value="/flight/add/{licenseNumber}", method = RequestMethod.POST, params={"removeRow"})
-//    public String removeRow(@ModelAttribute PilotModel pilot, Model model, HttpServletRequest req) {
-//        Integer rowId = Integer.valueOf(req.getParameter("removeRow"));
-//        pilot.getListFlight().remove(rowId.intValue());
-//        
-//        model.addAttribute("pilot", pilot);
-//        return "add-flight";
-//    }
-
     @PostMapping(value = "/add")
     public FlightModel addFlightSubmit(@RequestBody FlightModel flight) {
     	return flightService.addFlight(flight);
@@ -96,12 +66,6 @@ public class FlightController {
         }
         return "delete";
     }
-
-//    @RequestMapping(value = "/flight/update", method = RequestMethod.POST)
-//    private @ResponseBody FlightModel updateFlightSubmit(@ModelAttribute FlightModel flight, Model model) {
-//        flightService.addFlight(flight);
-//        return flight;
-//    }
     
     @DeleteMapping(value = "/{flightId}")
     private String deleteFlight(@RequestParam("flightId") long flightId) {
@@ -126,4 +90,40 @@ public class FlightController {
     	flightService.updateFlight(flightId, flight);
     	return "Flight update success";
     }
+    
+//  @RequestMapping(value = "/flight/add/{licenseNumber}", method = RequestMethod.GET)
+//  private String add(@PathVariable(value = "licenseNumber") String licenseNumber, Model model) {
+//      PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
+//      pilot.setListFlight(new ArrayList<FlightModel>(){
+//          private ArrayList<FlightModel> init(){
+//              this.add(new FlightModel());
+//              return this;
+//          }
+//      }.init());
+//
+//      model.addAttribute("pilot", pilot);
+//      return "add-flight";
+//  }
+//
+//  @RequestMapping(value = "/flight/add/{licenseNumber}", method = RequestMethod.POST, params={"addRow"})
+//  private String addRow(@ModelAttribute PilotModel pilot, Model model) {
+//      pilot.getListFlight().add(new FlightModel());
+//      model.addAttribute("pilot", pilot);
+//      return "add-flight";
+//  }
+//
+//  @RequestMapping(value="/flight/add/{licenseNumber}", method = RequestMethod.POST, params={"removeRow"})
+//  public String removeRow(@ModelAttribute PilotModel pilot, Model model, HttpServletRequest req) {
+//      Integer rowId = Integer.valueOf(req.getParameter("removeRow"));
+//      pilot.getListFlight().remove(rowId.intValue());
+//      
+//      model.addAttribute("pilot", pilot);
+//      return "add-flight";
+//  }
+    
+//  @RequestMapping(value = "/flight/update", method = RequestMethod.POST)
+//  private @ResponseBody FlightModel updateFlightSubmit(@ModelAttribute FlightModel flight, Model model) {
+//      flightService.addFlight(flight);
+//      return flight;
+//  }
 }

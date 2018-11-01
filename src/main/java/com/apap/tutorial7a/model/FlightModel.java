@@ -1,7 +1,7 @@
 package com.apap.tutorial7a.model;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,10 +15,9 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 /**
@@ -48,84 +47,58 @@ public class FlightModel implements Serializable {
 
     @NotNull
     @Column(name = "time", nullable = false)
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date time;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "pilot_licenseNumber", referencedColumnName = "license_number")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private PilotModel pilot;
 
-    /**
-     * @param id the id to set
-     */
     public void setId(long id) {
         this.id = id;
     }
-    /**
-     * @param flightNumber the flightNumber to set
-     */
+ 
     public void setFlightNumber(String flightNumber) {
         this.flightNumber = flightNumber;
     }
-    /**
-     * @param origin the origin to set
-     */
+
     public void setOrigin(String origin) {
         this.origin = origin;
     }
-    /**
-     * @param destination the destination to set
-     */
+
     public void setDestination(String destination) {
         this.destination = destination;
     }
-    /**
-     * @param time the time to set
-     */
-    public void setTime(Date time) {
-        this.time = time;
+
+    public void setTime(Date time2) {
+        this.time = time2;
     }
-    /**
-     * @param pilot the pilot to set
-     */
+
     public void setPilot(PilotModel pilot) {
         this.pilot = pilot;
     }
 
-    /**
-     * @return the id
-     */
     public long getId() {
         return id;
     }
-    /**
-     * @return the flightNumber
-     */
+
     public String getFlightNumber() {
         return flightNumber;
     }
-    /**
-     * @return the origin
-     */
+
     public String getOrigin() {
         return origin;
     }
-    /**
-     * @return the destination
-     */
+
     public String getDestination() {
         return destination;
     }
-    /**
-     * @return the time
-     */
+
     public Date getTime() {
         return time;
     }
-    /**
-     * @return the pilot
-     */
+
     public PilotModel getPilot() {
         return pilot;
     }
